@@ -253,6 +253,10 @@ hr {
   height: 0;
 }
 
+.text-black {
+  color: #000 !important;
+}
+
 /* Lists  
 --------------------------------------------------------------------- */
 ul,
@@ -630,6 +634,19 @@ header.opaque {
   background: #10100d7a;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: saturate(180%) blur(5px);
+}
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+  header.opaque {
+    -webkit-backdrop-filter: saturate(180%) blur(5px);
+    backdrop-filter: saturate(180%) blur(5px);
+  }
+}
+
+/* slightly transparent fallback for Firefox (not supporting backdrop-filter) */
+@supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+  header.opaque {
+    background-color: rgba(255, 255, 255, 0.8);
+  }
 }
 
 /* header logo */
